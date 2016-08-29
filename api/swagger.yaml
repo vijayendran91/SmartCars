@@ -1,0 +1,179 @@
+---
+swagger: "2.0"
+info:
+  description: "The Smartcar API Spec"
+  version: "0.0.1"
+  title: "The Smartcar API"
+paths:
+  /vehicles/{id}:
+    get:
+      description: "get vehicle info"
+      operationId: "getVehicleInfo"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "vehicle id"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Vehicle Information"
+          schema:
+            $ref: "#/definitions/VechicleInfo"
+          examples:
+            application/json:
+              vin: "1213231"
+              color: "Metallic Silver"
+              doorCount: 4
+              driveTrain: "v8"
+      x-swagger-router-controller: "Default"
+  /vehicles/{id}/battery:
+    get:
+      description: "get vehicle battery info"
+      operationId: "getVehicleBatteryInfo"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "vehicle id"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Vehicle Battery Information"
+          schema:
+            $ref: "#/definitions/VechicleBatteryInfo"
+          examples:
+            application/json:
+              percent: 30
+      x-swagger-router-controller: "Default"
+  /vehicles/{id}/doors:
+    get:
+      description: "get vehicle door info"
+      operationId: "getVehicleDoorInfo"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "vehicle id"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Vehicle Door Information"
+          schema:
+            $ref: "#/definitions/VechicleDoorInfo"
+          examples:
+            application/json:
+              doors:
+              - location: "frontLeft"
+                locked: true
+              - location: "frontRight"
+                locked: true
+      x-swagger-router-controller: "Default"
+  /vehicles/{id}/engine:
+    post:
+      description: "post vehicle engine command"
+      operationId: "postVehicleEngineCommand"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "vehicle id"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "action"
+        description: "engine command/action"
+        required: true
+        schema:
+          $ref: "#/definitions/EngineCommand"
+      responses:
+        200:
+          description: "Vehicle Engine Status Information"
+          schema:
+            $ref: "#/definitions/VechicleEngineStatus"
+          examples:
+            application/json:
+              status: "success"
+      x-swagger-router-controller: "Default"
+  /vehicles/{id}/fuel:
+    get:
+      description: "get vehicle fuel info"
+      operationId: "getVehicleFuelInfo"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "vehicle id"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Vehicle Fuel Information"
+          schema:
+            $ref: "#/definitions/VechicleFuelInfo"
+          examples:
+            application/json:
+              percent: 30
+      x-swagger-router-controller: "Default"
+definitions:
+  VechicleInfo:
+    required:
+    - "color"
+    - "doorCount"
+    - "driveTrain"
+    - "vin"
+    properties:
+      vin:
+        type: "string"
+      color:
+        type: "string"
+      doorCount:
+        type: "string"
+      driveTrain:
+        type: "string"
+    description: "Vehicle Info"
+  VechicleDoorInfo:
+    required:
+    - "doors"
+    properties:
+      doors:
+        type: "array"
+        items:
+          $ref: "#/definitions/DoorLocationInfo"
+    description: "Vehicle Info"
+  DoorLocationInfo:
+    required:
+    - "location"
+    - "locked"
+    properties:
+      location:
+        type: "string"
+      locked:
+        type: "boolean"
+    description: "Door Location Info"
+  VechicleFuelInfo:
+    required:
+    - "percent"
+    properties:
+      percent:
+        type: "string"
+    description: "Fuel Info"
+  VechicleBatteryInfo:
+    required:
+    - "percent"
+    properties:
+      percent:
+        type: "string"
+    description: "Battery Info"
+  VechicleEngineStatus:
+    required:
+    - "status"
+    properties:
+      status:
+        type: "string"
+    description: "Engine Command Action Status"
+  EngineCommand:
+    required:
+    - "action"
+    properties:
+      action:
+        type: "string"
+    description: "post engine command"
