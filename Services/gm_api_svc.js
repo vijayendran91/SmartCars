@@ -27,21 +27,21 @@ exports.getCarInfo  = function(args) {
     return defer.promise;
 };
 
-exports.getCarSecurityInfo = function(args){
+exports.getCarSecurityInfo = function(args) {
     logger.info("Request data from GM API /getSecurityStatusService");
     let defer = Q.defer();
     client.methods.security_info(args,function(data,resp){
         defer.resolve(data);
     });
-    logger.debug("Data recieved from GM API /getSecurityStatusInfo");
+    logger.debug("Return response from GM API /getSecurityStatusService");
     return defer.promise;
-
 };
+
 
 exports.getVehicleBatteryInfo= function(args){
     logger.info("Request data from GM API /getEnergyService");
     let defer=Q.defer();
-    client.methods.battery_info(args, function(data,resp){
+    client.methods.energy_info(args, function(data,resp){
        defer.resolve(data);
     });
     logger.debug("Data recieved from GM API /getEnergyService");

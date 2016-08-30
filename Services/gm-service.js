@@ -32,26 +32,28 @@ exports.fetchVehicleInfo = function (id) {
 
 };
 
-exports.fetchDoorInfo = function (id){
-    let defer= Q.defer();
-    logger.info("Fetch info from getCarSecurityInfo");
-    args.data=JSON.stringify({"id": String(id),"responseType":"JSON"});
+exports.fetchDoorInfo = function (id) {
+    let defer = Q.defer();
+    logger.info("Fetch INFO from getCarSecurityInfo");
+    args.data = JSON.stringify({"id": String(id), "responseType": "JSON"});
+
     gmsapi.getCarSecurityInfo(args)
-        .then(function (data){
-            var arrs = data.data.doors.value;
-            var res=[];
-            arr.forEach(function (val){
-                res.push({location:val.location.value,locked:val.locked.value});
+        .then(function (data) {
+            var arr = data.data.doors.values;
+            var res = []
+            arr.forEach(function (val) {
+                res.push({location: val.location.value, locked: val.locked.value});
             });
             defer.resolve({
-                doors:res
+                doors: res
             });
         })
-        .catch(function (err){
+        .catch(function (err) {
             defer.resolve({
-                msg:"ID NOT FOUND"
+                msg: " ID NOT FOUND"
             });
         });
+
     return defer.promise;
 };
 

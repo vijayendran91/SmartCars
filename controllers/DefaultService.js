@@ -29,13 +29,12 @@ exports.getVehicleDoorInfo = function(args, res, next) {
    * parameters expected in the args:
   * id (String)
   **/
-    logger.info("Request: getVehicleDoorInfo");
-    res.setHeader('Content-Type','application/json');
+  logger.info("Request: getVehicleDoorInfo");
+    res.setHeader('Content-Type', 'application/json');
     gmservice.fetchDoorInfo(args.id.value)
-        .then( function (data){
+        .then(function (data) {
             logger.info(JSON.stringify(data));
             res.end(JSON.stringify(data));
-
         });
 
 };
