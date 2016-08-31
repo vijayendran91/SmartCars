@@ -12,7 +12,6 @@ frisby.create('Test Cases to reach GM API, VehicleInfoService')
         "id": "1234",
         "responseType": "JSON"
     })
-    //.expectHeaderContains('Content-Type', 'json')
     .expectStatus(200)
     .toss();
 
@@ -21,7 +20,6 @@ frisby.create('Test Cases to reach GM API, VehicleInfoService')
         "id": "1234",
         "responseType": "JSON"
     })
-    //.expectHeaderContains('Content-Type', 'json')
     .expectStatus(200)
     .toss();
 
@@ -30,7 +28,6 @@ frisby.create('Test Cases to reach GM API, VehicleInfoService')
         "id": "1234",
         "responseType": "JSON"
     })
-    //.expectHeaderContains('Content-Type', 'json')
     .expectStatus(200)
     .toss();
 
@@ -40,6 +37,5 @@ frisby.create('Test Cases to reach GM API, VehicleInfoService')
         "responseType": "JSON",
         "command": "START_VEHICLE|STOP_VEHICLE"
     })
-    //.expectHeaderContains('Content-Type', 'json')
     .expectStatus(200)
     .toss();
