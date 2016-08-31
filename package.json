@@ -4,7 +4,6 @@
   "description": "The Smartcar API Spec",
   "main": "index.js",
   "scripts": {
-    "prestart": "npm install",
     "start": "node index.js"
   },
   "keywords": [
@@ -15,6 +14,9 @@
   "dependencies": {
     "connect": "^3.2.0",
     "js-yaml": "^3.3.0",
+    "log4js": "^0.6.38",
+    "node-rest-client": "^2.0.1",
+    "q": "^1.4.1",
     "swagger-tools": "0.10.1"
   },
   "devDependencies": {
